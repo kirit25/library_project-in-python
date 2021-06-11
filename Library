@@ -1,0 +1,65 @@
+class Library:
+
+    def __init__(self, listOfBooks):
+        self.books = listOfBooks
+
+    def displayAvailableBooks(self):
+        print("Books present in this library are: ")
+        for book in self.books:
+            print(" \t*" + book)
+
+    def borrowBook(self, bookName):
+        if bookName in self.books:
+            print(
+                f"you have been issued {bookName}. please keep it safe and return it within 30days")
+            self.books.remove(bookName)
+            return True
+        else:
+            print(
+                "sorry, This book is already booked. please wait until the book is required")
+            return False
+
+    def returnBook(self, bookName):
+        self.books.append(bookName)
+        print("Thanks for returning the book! Have a great day ahead!")
+
+
+class Student:
+    def requestBook(self):
+        self.book = input("Enter the name of the book you want to borrow: ")
+        return self.book
+
+    def returnBook(self):
+        self.book = input("Enter the name of the book you want to return: ")
+        return self.book
+
+
+if __name__ == "__main__":
+    centraLibrary = Library(["Algorithms", "Django", "python Notes", "clr"])
+    Student = Student()
+    
+    while(True):
+        welcomeMsg = '''=====Welcome to Central Library=====
+        Please choose all the option
+        1. Listing all the books
+        2. Request a book
+        3. Return a book
+        4. Exit the Library
+        '''
+
+        print(welcomeMsg)
+        
+        a = int(input("Enter a choice: "))
+        if a == 1:
+            centraLibrary.displayAvailableBooks()
+        elif a == 2:
+            centraLibrary.borrowBook(Student.requestBook())
+        elif a == 3:
+            centraLibrary.returnBook(Student.returnBook())
+        elif a == 4:
+            print("Thanks for choosing Central Library! Have a Great day!")
+            exit()
+        else:
+            print("!Invalid choice!")
+
+        
